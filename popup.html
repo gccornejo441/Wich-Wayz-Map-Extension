@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wich Waysz - Quick Shop Submission</title>
-  <script src="https://unpkg.com/htmx.org@1.9.6"></script>
-</head>
-<body>
-  <h2>Send Message</h2>
-  </form>
-  <div id="serverResponse"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Wich Waysz - Quick Shop Submission</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/htmx.min.js"></script>
+    <script src="js/alpine.min.js"></script>
+    <script src="js/script.js"></script>
+  </head>
+  <body x-data="{ showManual: false }">
+    <h2>Add a Shop</h2>
+
+    <form
+      hx-post="https://*/api/addShop"
+      hx-trigger="submit"
+      hx-target="#response"
+      hx-swap="innerHTML"
+    >
+      <input name="shopName" type="text" placeholder="Shop Name" required />
+      <textarea
+        name="shop_description"
+        placeholder="Shop Description"
+      ></textarea>
+      <input name="website_url" type="url" placeholder="Website URL" />
+      <input
+        name="phone"
+        type="text"
+        placeholder="Phone (123) 456-7890"
+        id="phoneInput"
+      />
+
+      <div class="multiselect">
+        <label
+          ><input type="checkbox" name="categories" value="1" />Roast Beef</label
+        >
+      </div>
+
+      <input
+        name="address"
+        id="addressInput"
+        placeholder="Street Address"
+        required
+      />
+      <button type="button" onclick="prefillAddress()">Prefill Address</button>
+      <span id="loading" style="display: none">Loading...</span>
+
+      <button type="button" @click="showManual = !showManual">
+        <span
+          x-text="showManual ? 'Hide Manual Entry' : 'Enter Address Manually'"
+        ></span>
+      </button>
+
+      <div id="manualFields" x-show="showManual" style="margin-top: 1rem">
+        <input
+          name="house_number"
+          id="house_number"
+          placeholder="Street Number"
+        />
+        <input
+          name="address_first"
+          id="address_first"
+          placeholder="Address Line 1"
+        />
+        <input
+          name="address_second"
+          id="address_second"
+          placeholder="Address Line 2"
+        />
+        <input name="city" id="city" placeholder="City" />
+        <input name="state" id="state" placeholder="State" />
+        <input name="postcode" id="postcode" placeholder="Postcode" />
+        <input name="country" id="country" placeholder="Country" />
+        <input
+          name="latitude"
+          id="latitude"
+          type="number"
+          step="any"
+          placeholder="Latitude"
+        />
+        <input
+          name="longitude"
+          id="longitude"
+          type="number"
+          step="any"
+          placeholder="Longitude"
+        />
+      </div>
+
+      <button type="submit">Submit Location</button>
+    </form>
+
+    <div id="response"></div>
+  </body>
 </html>

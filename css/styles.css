@@ -1,0 +1,53 @@
+body {
+    font-family: sans-serif;
+    padding: 1rem;
+    width: 350px;
+    background-color: #f8f9fa;
+  }
+  input, textarea, select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #007bff;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+  }
+  button:disabled {
+    background-color: #aaa;
+  }
+  .multiselect {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: white;
+  }
+  .multiselect label {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .row {
+    display: flex;
+    gap: 1rem;
+  }
+  .col {
+    flex: 1;
+  }
+  #response {
+    white-space: pre-wrap;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+  }
