@@ -51,3 +51,43 @@ body {
     font-family: monospace;
     font-size: 0.9rem;
   }
+
+  .msd {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .msd_label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .msd_options_container {
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 5px 5px;
+  }
+  
+  .msd_options_option {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .msd_options_option-check {
+    background-color: #e0f7fa;
+  }
+  
+  .msd_options_checkbox {
+    float: right;
+  }
+  
