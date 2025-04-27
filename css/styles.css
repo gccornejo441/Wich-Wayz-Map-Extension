@@ -91,3 +91,23 @@ body {
     float: right;
   }
   
+
+  #categoryCheckboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+  
+  .checkbox-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #007bff; 
+  }
+  

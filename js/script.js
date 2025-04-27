@@ -32,31 +32,24 @@ async function loadCategories() {
     container.innerHTML = ""; // Clear loading
 
     categories.forEach(({ id, category_name }) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "checkbox-item"; // Use our new class
+
+      const checkbox = document.createElement("input");
+      checkbox.id = `category-${id}`;
+      checkbox.type = "checkbox";
+      checkbox.name = "categories";
+      checkbox.value = id;
+      checkbox.className = "msd_options_checkbox";
+
       const label = document.createElement("label");
-      label.className = "msd_options_option";
       label.htmlFor = `category-${id}`;
-      label.style.display = "block";
-      label.style.padding = "5px";
+      label.textContent = category_name;
 
-      label.innerHTML = `
-        ${category_name}
-        <input 
-          id="category-${id}" 
-          type="checkbox" 
-          name="categories" 
-          value="${id}" 
-          class="msd_options_checkbox">
-      `;
+      wrapper.appendChild(checkbox);
+      wrapper.appendChild(label);
 
-      label.querySelector("input").addEventListener("change", (e) => {
-        if (e.target.checked) {
-          label.classList.add("msd_options_option-check");
-        } else {
-          label.classList.remove("msd_options_option-check");
-        }
-      });
-
-      container.appendChild(label);
+      container.appendChild(wrapper);
     });
   } catch (err) {
     console.error("Failed to load categories:", err);
