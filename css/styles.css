@@ -111,3 +111,13 @@ body {
     accent-color: #007bff; 
   }
   
+  #manualFields {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  #manualFields.show {
+    opacity: 1;
+    display: block;
+  }
+  

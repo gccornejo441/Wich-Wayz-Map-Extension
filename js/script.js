@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const prefillButton = document.getElementById("prefillAddressButton");
+  prefillButton.addEventListener("click", prefillAddress);
+
   const phoneInput = document.getElementById("phoneInput");
   phoneInput.addEventListener("input", (e) => {
     let value = e.target.value.replace(/\D/g, "");
@@ -22,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 async function loadCategories() {
   try {
@@ -58,7 +62,6 @@ async function loadCategories() {
   }
 }
 
-
 async function prefillAddress() {
   const loading = document.getElementById("loading");
   const address = document.getElementById("addressInput").value.trim();
@@ -83,14 +86,19 @@ async function prefillAddress() {
     const components = result.address;
 
     document.getElementById("house_number").value = components.house_number || "";
-    document.getElementById("address_first").value = components.road || "";
-    document.getElementById("address_second").value = "";
-    document.getElementById("city").value = components.city || components.town || "";
-    document.getElementById("state").value = components.state || "";
+    document.getElementById("address_first").value = components.road || components.pedestrian || components.cycleway || components.footway || "";
+    document.getElementById("address_second").value = components.neighbourhood || components.suburb || "";
+    document.getElementById("city").value = components.city || components.town || components.village || "";
+    document.getElementById("state").value = components.state || components.region || "";
     document.getElementById("postcode").value = components.postcode || "";
     document.getElementById("country").value = components.country || "";
     document.getElementById("latitude").value = parseFloat(result.lat).toFixed(6);
     document.getElementById("longitude").value = parseFloat(result.lon).toFixed(6);
+
+    const manualFields = document.getElementById("manualFields");
+    manualFields.classList.add("show");
+    manualFields.style.display = "block";
+
   } catch (error) {
     console.error("Failed to fetch address:", error);
     alert("Something went wrong while fetching the address.");
@@ -98,4 +106,3 @@ async function prefillAddress() {
     loading.style.display = "none";
   }
 }
-
