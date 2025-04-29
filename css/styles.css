@@ -1,123 +1,135 @@
 body {
-    font-family: sans-serif;
-    padding: 1rem;
-    width: 350px;
-    background-color: #f8f9fa;
-  }
-  input, textarea, select {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    background-color: #007bff;
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-  }
-  button:disabled {
-    background-color: #aaa;
-  }
-  .multiselect {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    background-color: white;
-  }
-  .multiselect label {
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .row {
-    display: flex;
-    gap: 1rem;
-  }
-  .col {
-    flex: 1;
-  }
-  #response {
-    white-space: pre-wrap;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 0.5rem;
-    margin-top: 1rem;
-    font-family: monospace;
-    font-size: 0.9rem;
-  }
+  font-family: sans-serif;
+  padding: 1rem;
+  width: 350px;
+  background-color: #FFFFFF; /* background */
+  color: #333333; /* accent text color */
+}
 
-  .msd {
-    position: relative;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  
-  .msd_label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .msd_options_container {
-    border: 1px solid #ccc;
-    border-top: none;
-    background: white;
-    max-height: 200px;
-    overflow-y: auto;
-    border-radius: 0 0 5px 5px;
-  }
-  
-  .msd_options_option {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .msd_options_option-check {
-    background-color: #e0f7fa;
-  }
-  
-  .msd_options_checkbox {
-    float: right;
-  }
-  
+input, textarea, select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #5a110c; /* primaryBorder */
+  border-radius: 5px;
+  background-color: #FFFFFF; /* background */
+  color: #333333; /* accent text */
+}
 
-  #categoryCheckboxes {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .checkbox-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-  }
-  
-  .checkbox-item input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    accent-color: #007bff; 
-  }
-  
-  #manualFields {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  #manualFields.show {
-    opacity: 1;
-    display: block;
-  }
-  
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  color: #FFFFFF; /* white text */
+  background-color: #DA291C; /* primary */
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+button:disabled {
+  background-color: #aaa;
+}
+
+.multiselect {
+  border: 1px solid #5a110c; /* primaryBorder */
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  background-color: #FFFFFF;
+}
+
+.multiselect label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+}
+
+.col {
+  flex: 1;
+}
+
+#response {
+  white-space: pre-wrap;
+  background-color: #F5F5F5; /* lightGray */
+  border: 1px solid #5a110c; /* primaryBorder */
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #333333;
+}
+
+.msd {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.msd_label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #FFFFFF; 
+  border: 1px solid #5a110c; 
+  border-radius: 5px;
+  cursor: pointer;
+  color: #333333; 
+}
+
+.msd_options_container {
+  border: 1px solid #5a110c; 
+  border-top: none;
+  background: #FFFFFF;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 0 0 5px 5px;
+}
+
+.msd_options_option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.msd_options_option-check {
+  background-color: #FFC72C; 
+}
+
+.msd_options_checkbox {
+  float: right;
+}
+
+#categoryCheckboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #DA291C; 
+}
+
+#manualFields {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#manualFields.show {
+  opacity: 1;
+  display: block;
+}
