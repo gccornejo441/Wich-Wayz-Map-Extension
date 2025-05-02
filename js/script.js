@@ -1,7 +1,14 @@
+import { submitNewShop } from "src/submitNewShop.js";
+import { STATIC_ADMIN_ID } from "./config.js";
+
+
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Handle "Prefill Address" button
   const prefillButton = document.getElementById("prefillAddressButton");
   prefillButton.addEventListener("click", prefillAddress);
 
+  // Format phone number as user types
   const phoneInput = document.getElementById("phoneInput");
   phoneInput.addEventListener("input", (e) => {
     let value = e.target.value.replace(/\D/g, "");
@@ -12,20 +19,50 @@ document.addEventListener("DOMContentLoaded", () => {
       : `(${parts[1]}) ${parts[2]}${parts[3] ? `-${parts[3]}` : ""}`;
   });
 
+  // Load category checkboxes from JSON
   loadCategories();
 
+  // Handle dropdown toggle for categories
   const dropdownToggle = document.getElementById("dropdownToggle");
   const dropdownContainer = document.getElementById("categoriesDropdown");
-
   dropdownToggle.addEventListener("click", () => {
-    if (dropdownContainer.style.display === "none") {
-      dropdownContainer.style.display = "block";
-    } else {
-      dropdownContainer.style.display = "none";
+    dropdownContainer.style.display =
+      dropdownContainer.style.display === "none" ? "block" : "none";
+  });
+
+  // Handle form submission
+  const form = document.getElementById("shopForm");
+  const responseDiv = document.getElementById("response");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const selectedCategoryIds = [];
+
+    document.querySelectorAll("input[name='categories']:checked").forEach((cb) => {
+      selectedCategoryIds.push(Number(cb.value));
+    });
+
+    try {
+      const data = Object.fromEntries(formData.entries());
+
+      const payload = {
+        ...data,
+        selectedCategoryIds,
+        latitude: parseFloat(data.latitude || "0"),
+        longitude: parseFloat(data.longitude || "0"),
+        userId: STATIC_ADMIN_ID
+      };
+
+      const result = await submitNewShop(payload);
+      responseDiv.innerHTML = `<div class="success">Shop added! ID: ${result.shopId}</div>`;
+    } catch (err) {
+      console.error("Error submitting shop:", err);
+      responseDiv.innerHTML = `<div class="error">Failed to add shop: ${err.message}</div>`;
     }
   });
 });
-
 
 async function loadCategories() {
   try {
@@ -37,7 +74,7 @@ async function loadCategories() {
 
     categories.forEach(({ id, category_name }) => {
       const wrapper = document.createElement("div");
-      wrapper.className = "checkbox-item"; // Use our new class
+      wrapper.className = "checkbox-item"; 
 
       const checkbox = document.createElement("input");
       checkbox.id = `category-${id}`;
