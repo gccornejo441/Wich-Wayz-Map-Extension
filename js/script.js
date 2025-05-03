@@ -1,5 +1,5 @@
-import { submitNewShop } from "src/submitNewShop.js";
-import { STATIC_ADMIN_ID } from "./config.js";
+import { submitNewShop } from "../src/submissionService.js";
+import { STATIC_ADMIN_ID } from "../src/config.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const dropdownToggle = document.getElementById("dropdownToggle");
   const dropdownContainer = document.getElementById("categoriesDropdown");
   dropdownToggle.addEventListener("click", () => {
-    dropdownContainer.style.display =
-      dropdownContainer.style.display === "none" ? "block" : "none";
+    const isVisible = dropdownContainer.offsetParent !== null;
+    dropdownContainer.style.display = isVisible ? "none" : "block";
   });
 
   // Handle form submission

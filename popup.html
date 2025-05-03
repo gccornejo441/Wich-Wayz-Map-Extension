@@ -4,19 +4,13 @@
   <meta charset="UTF-8" />
   <title>Wich Wayz - Quick Shop Submission</title>
   <link rel="stylesheet" href="css/styles.css" />
-  <script src="js/htmx.min.js"></script>
-  <script src="js/script.js" defer></script>
+  <script type="module" src="js/script.js"></script>
 </head>
 <body>
 
 <h2>Add a Shop</h2>
 
-<form
-  hx-post="https://*/api/addShop"
-  hx-trigger="submit"
-  hx-target="#response"
-  hx-swap="innerHTML"
->
+<form id="shopForm">
   <input name="shopName" type="text" placeholder="Shop Name" required />
   <textarea name="shop_description" placeholder="Shop Description"></textarea>
   <input name="website_url" type="url" placeholder="Website URL" />
@@ -28,7 +22,7 @@
         Select Categories
         <i class="msd_label_icon">▼</i>
       </label>
-  
+
       <div class="msd_options_container" id="categoriesDropdown" style="display: none;">
         <div class="msd_options" id="categoryCheckboxes">
           Loading categories...
@@ -36,7 +30,6 @@
       </div>
     </div>
   </div>
-  
 
   <input name="address" id="addressInput" placeholder="Street Address" required />
   <button type="button" id="prefillAddressButton">Prefill Address</button>
