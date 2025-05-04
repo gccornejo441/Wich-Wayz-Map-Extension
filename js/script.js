@@ -25,10 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle dropdown toggle for categories
   const dropdownToggle = document.getElementById("dropdownToggle");
   const dropdownContainer = document.getElementById("categoriesDropdown");
+  
   dropdownToggle.addEventListener("click", () => {
-    const isVisible = dropdownContainer.offsetParent !== null;
-    dropdownContainer.style.display = isVisible ? "none" : "block";
+    console.log("Dropdown clicked");
+    const isHidden = dropdownContainer.style.display === "none" || dropdownContainer.style.display === "";
+    dropdownContainer.style.display = isHidden ? "block" : "none";
   });
+  
 
   // Handle form submission
   const form = document.getElementById("shopForm");

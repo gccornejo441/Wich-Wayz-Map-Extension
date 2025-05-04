@@ -110,6 +110,10 @@ button:disabled {
   gap: 8px;
 }
 
+#categoriesDropdown.hidden {
+  display: none;
+}
+
 .checkbox-item {
   display: flex;
   align-items: center;
