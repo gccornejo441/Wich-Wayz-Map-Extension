@@ -1,0 +1,1 @@
+const STATIC_ADMIN_ID = process.env.WICH_WAYZ_ADMIN_USERID;
