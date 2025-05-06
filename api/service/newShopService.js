@@ -32,6 +32,7 @@ export default async function handler(req, res) {
   const db = await client.transaction();
 
   try {
+    // Insert address info into 'locations' table
     await db.execute({
       sql: `
         INSERT INTO locations
@@ -51,10 +52,12 @@ export default async function handler(req, res) {
       ],
     });
 
+    // Retrieve the ID of the newly inserted location
     const [[{ last_insert_rowid: locationId }]] = await db.execute({
       sql: `SELECT last_insert_rowid() AS last_insert_rowid;`,
     });
 
+    // Insert shop info linked to the location
     await db.execute({
       sql: `
         INSERT INTO shops (name, description, created_by, modified_by, id_location)
@@ -63,21 +66,25 @@ export default async function handler(req, res) {
       args: [shopName, shop_description, userId, null, locationId],
     });
 
+    // Retrieve the ID of the newly inserted shop
     const [[{ last_insert_rowid: shopId }]] = await db.execute({
       sql: `SELECT last_insert_rowid() AS last_insert_rowid;`,
     });
 
+    // Link shop and location in a junction table
     await db.execute({
       sql: `INSERT INTO shop_locations (shop_id, location_id) VALUES (?, ?)`,
       args: [shopId, locationId],
     });
 
+    // Link shop to its selected categories
     for (const catId of selectedCategoryIds) {
       await db.execute({
         sql: `INSERT INTO shop_categories (shop_id, category_id) VALUES (?, ?)`,
         args: [shopId, catId],
       });
     }
+
 
     await db.commit();
     res.status(200).json({ shopId, locationId });
