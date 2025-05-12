@@ -35,50 +35,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("shopForm");
   const responseDiv = document.getElementById("response");
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const formData = new FormData(form);
-  const selectedCategoryIds = [];
+    const formData = new FormData(form);
+    const selectedCategoryIds = [];
 
-  document
-    .querySelectorAll("input[name='categories']:checked")
-    .forEach((cb) => {
-      selectedCategoryIds.push(Number(cb.value));
-    });
+    document
+      .querySelectorAll("input[name='categories']:checked")
+      .forEach((cb) => {
+        selectedCategoryIds.push(Number(cb.value));
+      });
 
-  try {
-    const data = Object.fromEntries(formData.entries());
+    try {
+      const data = Object.fromEntries(formData.entries());
 
-    const payload = {
-      ...data,
-      selectedCategoryIds,
-      latitude: parseFloat(data.latitude || "0"),
-      longitude: parseFloat(data.longitude || "0"),
-      userId: STATIC_ADMIN_ID,
-    };
+      const payload = {
+        ...data,
+        selectedCategoryIds,
+        latitude: parseFloat(data.latitude || "0"),
+        longitude: parseFloat(data.longitude || "0"),
+        userId: STATIC_ADMIN_ID,
+      };
 
-    console.log("Submitting payload:", JSON.stringify(payload, null, 2));
+      const result = await submitNewShop(payload);
 
-    const result = await submitNewShop(payload);
-
-    console.log("Raw result from submitNewShop:", result);
-
-    if (result?.shopId) {
-      responseDiv.innerHTML = `<div class="success">Shop added! ID: ${result.shopId}</div>`;
-    } else {
-      console.warn("Response missing shopId. Full response:", result);
-      throw new Error("Shop ID missing in response");
+      if (result?.shopId) {
+        responseDiv.innerHTML = `<div class="success">Shop added! ID: ${result.shopId}</div>`;
+      } else {
+        console.warn("Response missing shopId. Full response:", result);
+        throw new Error("Shop ID missing in response");
+      }
+    } catch (err) {
+      console.error("Error submitting shop:", err);
+      responseDiv.innerHTML = `<div class="error">Failed to add shop: ${err.message}</div>`;
     }
-
-  } catch (err) {
-    console.error("Error submitting shop:", err);
-    responseDiv.innerHTML = `<div class="error">Failed to add shop: ${err.message}</div>`;
-  }
+  });
 });
-
-});
-
 
 async function loadCategories() {
   try {
