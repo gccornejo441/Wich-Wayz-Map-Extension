@@ -11,6 +11,10 @@
   "description": "",
   "dependencies": {
     "@libsql/client": "^0.15.4",
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "vercel": "^41.7.4"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
   }
 }

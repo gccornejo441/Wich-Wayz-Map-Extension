@@ -1,2 +1,4 @@
 api/.env
+api/node_modules
 chrome-extension/.env
+.vercel
