@@ -1,41 +1,51 @@
+:root {
+  --background: #FFFFFF;
+  --textAccent: #333333;
+  --primary: #DA291C;
+  --primaryBorder: #5a110c;
+  --highlight: #FFC72C;
+  --lightGray: #F5F5F5;
+}
+
 body {
   font-family: sans-serif;
   padding: 1rem;
   width: 350px;
-  background-color: #FFFFFF; /* background */
-  color: #333333; /* accent text color */
+  background-color: var(--background);
+  color: var(--textAccent);
 }
 
 input, textarea, select {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #5a110c; /* primaryBorder */
+  border: 1px solid var(--primaryBorder);
   border-radius: 5px;
-  background-color: #FFFFFF; /* background */
-  color: #333333; /* accent text */
+  background-color: var(--background);
+  color: var(--textAccent);
 }
 
 button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
-  color: #FFFFFF; /* white text */
-  background-color: #DA291C; /* primary */
+  color: var(--background); /* white text */
+  background-color: var(--primary);
   cursor: pointer;
   margin-bottom: 0.5rem;
 }
 
 button:disabled {
   background-color: #aaa;
+  cursor: not-allowed;
 }
 
 .multiselect {
-  border: 1px solid #5a110c; /* primaryBorder */
+  border: 1px solid var(--primaryBorder);
   border-radius: 5px;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  background-color: #FFFFFF;
+  background-color: var(--background);
 }
 
 .multiselect label {
@@ -54,16 +64,17 @@ button:disabled {
 
 #response {
   white-space: pre-wrap;
-  background-color: #F5F5F5; /* lightGray */
-  border: 1px solid #5a110c; /* primaryBorder */
+  background-color: var(--lightGray);
+  border: 1px solid var(--primaryBorder);
   border-radius: 4px;
   padding: 0.5rem;
   margin-top: 1rem;
   font-family: monospace;
   font-size: 0.9rem;
-  color: #333333;
+  color: var(--textAccent);
 }
 
+/* Multi-Select Dropdown Styles */
 .msd {
   position: relative;
   width: 100%;
@@ -75,17 +86,17 @@ button:disabled {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background: #FFFFFF; 
-  border: 1px solid #5a110c; 
+  background: var(--background);
+  border: 1px solid var(--primaryBorder);
   border-radius: 5px;
   cursor: pointer;
-  color: #333333; 
+  color: var(--textAccent);
 }
 
 .msd_options_container {
-  border: 1px solid #5a110c; 
+  border: 1px solid var(--primaryBorder);
   border-top: none;
-  background: #FFFFFF;
+  background: var(--background);
   max-height: 200px;
   overflow-y: auto;
   border-radius: 0 0 5px 5px;
@@ -97,13 +108,14 @@ button:disabled {
 }
 
 .msd_options_option-check {
-  background-color: #FFC72C; 
+  background-color: var(--highlight);
 }
 
 .msd_options_checkbox {
   float: right;
 }
 
+/* Category Checkbox Styles */
 #categoryCheckboxes {
   display: flex;
   flex-direction: column;
@@ -119,15 +131,16 @@ button:disabled {
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: #333333;
+  color: var(--textAccent);
 }
 
 .checkbox-item input[type="checkbox"] {
   width: 16px;
   height: 16px;
-  accent-color: #DA291C; 
+  accent-color: var(--primary);
 }
 
+/* Manual Fields Visibility Toggle */
 #manualFields {
   opacity: 0;
   transition: opacity 0.5s ease;
